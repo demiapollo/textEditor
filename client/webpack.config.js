@@ -23,7 +23,7 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: "./src/index.html",
-        title: "My App",
+        title: "JATE",
       }),
       new WebpackPwaManifest({
         fingerprints: false,
@@ -44,7 +44,7 @@ module.exports = () => {
       }),
       new InjectManifest({
         swSrc: "./src-sw.js",
-        swDest: "sw.js",
+        swDest: "src-sw.js",
       }),
     ],
 

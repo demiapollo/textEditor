@@ -1,9 +1,10 @@
-const { offlineFallback, warmStrategyCache } = require("workbox-recipes");
+// deleted offlineFallback from line 2
+const { warmStrategyCache } = require("workbox-recipes");
 const { CacheFirst } = require("workbox-strategies");
 const { registerRoute } = require("workbox-routing");
 const { CacheableResponsePlugin } = require("workbox-cacheable-response");
 const { ExpirationPlugin } = require("workbox-expiration");
-const { precacheAndRoute } = require("workbox-precaching/precacheAndRoute");
+import { precacheAndRoute } from "workbox-precaching";
 
 precacheAndRoute(self.__WB_MANIFEST);
 
@@ -28,7 +29,7 @@ registerRoute(({ request }) => request.mode === "navigate", pageCache);
 
 // Asset caching
 registerRoute(
-  ({ request }) => ['style', 'script', 'worker'].includes(request.destination),
+  ({ request }) => ["style", "script", "worker"].includes(request.destination),
   new CacheFirst({
     cacheName: "asset-cache",
     plugins: [
@@ -39,5 +40,5 @@ registerRoute(
         maxAgeSeconds: 30 * 24 * 60 * 60,
       }),
     ],
-  }),
+  })
 );
