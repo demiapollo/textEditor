@@ -1,10 +1,9 @@
-// deleted offlineFallback from line 2
-const { warmStrategyCache } = require("workbox-recipes");
+const { offlineFallback, warmStrategyCache } = require("workbox-recipes");
 const { CacheFirst } = require("workbox-strategies");
 const { registerRoute } = require("workbox-routing");
 const { CacheableResponsePlugin } = require("workbox-cacheable-response");
 const { ExpirationPlugin } = require("workbox-expiration");
-import { precacheAndRoute } from "workbox-precaching";
+const { precacheAndRoute } = require("workbox-precaching/PrecacheRoute");
 
 precacheAndRoute(self.__WB_MANIFEST);
 
