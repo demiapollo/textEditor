@@ -12,9 +12,9 @@ module.exports = () => {
     entry: {
       main: "./src/js/index.js",
       install: "./src/js/install.js",
-      database: "./src/js/database.js",
-      header: "./src/js/header.js",
-      editor: "./src/js/editor.js",
+      // database: "./src/js/database.js",
+      // header: "./src/js/header.js",
+      // editor: "./src/js/editor.js",
     },
     output: {
       filename: "[name].bundle.js",
@@ -23,17 +23,18 @@ module.exports = () => {
     plugins: [
       new HtmlWebpackPlugin({
         template: "./src/index.html",
-        title: "JATE",
+        title: "Client Server",
       }),
       new WebpackPwaManifest({
         fingerprints: false,
-        name: "My Text Editor App",
-        short_name: "Text Editor",
+        inject: true,
+        name: "Just Another Text Editor",
+        short_name: "JATE",
         description: "A simple text editor app",
         background_color: "#ffffff",
         theme_color: "#000000",
-        start_url: "/",
-        publicPath: "/",
+        start_url: "./",
+        publicPath: "./",
         icons: [
           {
             src: path.resolve("src/images/logo.png"),
@@ -56,12 +57,12 @@ module.exports = () => {
         },
         {
           test: /\.js$/,
-          exclude: /node_modules/,
+          exclude: /(node_modules | bower_components)/,
           use: {
             loader: "babel-loader",
             options: {
               presets: ["@babel/preset-env"],
-              plugins: ["@babel/plugin-proposal-class-properties"],
+              plugins: ["@babel/plugin-proposal-object-rest-spread, @babel/transform-runtime"],
             },
           },
         },
